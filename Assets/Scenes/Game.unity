@@ -660,6 +660,7 @@ GameObject:
   - component: {fileID: 837252974}
   - component: {fileID: 837252973}
   - component: {fileID: 837252976}
+  - component: {fileID: 837252977}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -817,14 +818,51 @@ MonoBehaviour:
   _drop: 113
   _onPickUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 837252977}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: ChangeWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onCloseTo:
     m_PersistentCalls:
       m_Calls: []
   _onDrop:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 837252977}
+        m_TargetAssemblyTypeName: PlayerCombat, Assembly-CSharp
+        m_MethodName: RemoveWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _layer:
     serializedVersion: 2
     m_Bits: 8
   _holder: {fileID: 626439327}
+--- !u!114 &837252977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837252970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12a937c0fd84102baf6bd856f75d8ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cooldown: 0.5
