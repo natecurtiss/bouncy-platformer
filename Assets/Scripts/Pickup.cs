@@ -16,7 +16,6 @@ abstract class Pickup : MonoBehaviour
 
     public void PickUp(Transform holder)
     {
-        _rigidbody.isKinematic = true;
         _rigidbody.simulated = false;
         transform.SetParent(holder);
         transform.position = holder.position;
@@ -26,6 +25,7 @@ abstract class Pickup : MonoBehaviour
 
     public void Throw(Vector2 direction)
     {
+        transform.SetParent(null);
         _rigidbody.simulated = true;
         _rigidbody.AddForce(direction * _throwForce, Impulse);
         _onThrown.Invoke();
