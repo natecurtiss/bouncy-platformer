@@ -9,10 +9,12 @@ abstract class Pickup : MonoBehaviour
     [SerializeField] float _throwForce;
     [SerializeField] UnityEvent _onPickedUp;
     [SerializeField] UnityEvent _onThrown;
+    
+    protected bool IsPickedUp { get; private set; }
 
-    void Awake() => _rigidbody = GetComponent<Rigidbody2D>();
+    protected virtual void Awake() => _rigidbody = GetComponent<Rigidbody2D>();
 
-    public abstract void Use();
+    public abstract void Use(out float cooldown);
 
     public void PickUp(Transform holder)
     {
@@ -21,6 +23,7 @@ abstract class Pickup : MonoBehaviour
         transform.position = holder.position;
         transform.rotation = holder.rotation;
         _onPickedUp.Invoke();
+        IsPickedUp = true;
     }
 
     public void Throw(Vector2 direction)
@@ -29,5 +32,6 @@ abstract class Pickup : MonoBehaviour
         _rigidbody.simulated = true;
         _rigidbody.AddForce(direction * _throwForce, Impulse);
         _onThrown.Invoke();
+        IsPickedUp = false;
     }
 }

@@ -4,7 +4,6 @@ using static UnityEngine.Time;
 
 class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] float _cooldown;
     Pickup _weapon;
     float _cooldownTimer;
 
@@ -12,8 +11,8 @@ class PlayerCombat : MonoBehaviour
     {
         if (GetMouseButtonDown(0) && _weapon is not null && _cooldownTimer <= 0)
         {
-            _weapon.Use();
-            _cooldownTimer = _cooldown;
+            _weapon.Use(out var cooldown);
+            _cooldownTimer = cooldown;
         }
         _cooldownTimer -= deltaTime;
     }
