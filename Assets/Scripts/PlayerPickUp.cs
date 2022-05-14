@@ -13,7 +13,7 @@ class PlayerPickUp : MonoBehaviour
     [SerializeField] UnityEvent<Pickup> _onCloseTo;
     [SerializeField] UnityEvent<Pickup> _onDrop;
     [SerializeField] LayerMask _layer;
-    [SerializeField] Transform _holder;
+    [SerializeField] Transform _leftHand, _rightHand;
     
     Pickup _active;
 
@@ -59,7 +59,9 @@ class PlayerPickUp : MonoBehaviour
 
     void PickUp(Pickup pickup)
     {
-        pickup.PickUp(_holder);
+        pickup.PickUp(_rightHand);
+        pickup.LeftHand = _leftHand;
+        pickup.RightHand = _rightHand;
         _active = pickup;
         _onPickUp.Invoke(_active);
     }

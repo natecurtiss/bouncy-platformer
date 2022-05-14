@@ -23,8 +23,11 @@ class Pistol : Pickup
 
     void Update()
     {
-        if (IsPickedUp) 
+        if (IsPickedUp)
+        {
             RotateToMouse();
+            ChangeHands();
+        }
     }
 
     public override void Use(out float cooldown)
@@ -42,6 +45,24 @@ class Pistol : Pickup
         var y = mousePos.y - transform.position.y;
         var x = mousePos.x - transform.position.x;
         var angle = Atan2(y, x) * Rad2Deg;
-        transform.rotation = AngleAxis(angle, Vector3.forward);
+        transform.rotation = Euler(transform.eulerAngles.x, transform.eulerAngles.y, angle);
+    }
+
+    void ChangeHands()
+    {
+        var rot = DeltaAngle(0f, transform.eulerAngles.z);
+        if (rot is > -90 and < 90)
+        {
+            if (transform.parent == LeftHand)
+            {
+                transform.SetParent(RightHand, false);
+                transform.localPosition = -transform.localPosition;
+            }
+        }
+        else if (transform.parent == RightHand)
+        {
+            transform.SetParent(LeftHand, false);
+            transform.localPosition = -transform.localPosition;
+        }
     }
 }

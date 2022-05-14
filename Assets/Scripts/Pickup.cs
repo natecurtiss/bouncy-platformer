@@ -10,6 +10,8 @@ abstract class Pickup : MonoBehaviour
     [SerializeField] UnityEvent _onPickedUp;
     [SerializeField] UnityEvent _onThrown;
     
+    public Transform LeftHand { get; set; }
+    public Transform RightHand { get; set; }
     protected bool IsPickedUp { get; private set; }
 
     protected virtual void Awake() => _rigidbody = GetComponent<Rigidbody2D>();

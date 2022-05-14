@@ -31,7 +31,7 @@ class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Flip();
+        // Flip();
         Move();
         if (_jumpBuffer > 0 && _groundTimer > 0)
             Jump();
@@ -55,7 +55,7 @@ class PlayerMovement : MonoBehaviour
     void GetInput()
     {
         _horizontalInput = GetAxisRaw("Horizontal");
-        if (GetKeyDown(KeyCode.W) || GetKeyDown(KeyCode.UpArrow))
+        if (GetKey(KeyCode.W) || GetKey(KeyCode.UpArrow))
             _jumpBuffer = _coyoteTime;
     }
 
